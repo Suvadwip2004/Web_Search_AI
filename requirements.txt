@@ -1,2 +1,6 @@
 ddgs
 ollama
+beautifulsoup4
+requests
+joblib
+numpy
