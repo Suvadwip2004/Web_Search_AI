@@ -1,38 +1,269 @@
-# Web Search AI
+# 🔎 Web Search AI
 
-A lightweight Python script that combines DuckDuckGo web search with the Ollama language model (specifically `phi3:mini`) to provide short, AI-generated summarized answers based on real-time web results.
+A lightweight **Python-based AI web search assistant** that combines **DuckDuckGo search** with a **local Ollama language model** to generate concise answers from real-time web content.
 
-## Prerequisites
+Instead of relying on cloud APIs, this project runs **fully locally** using Ollama models. It fetches web results, extracts webpage text, embeds the content, retrieves the most relevant information, and generates a summarized answer.
 
-- [Ollama](https://ollama.com/) must be installed and running locally.
-- You must have the `phi3:mini` model pulled in Ollama (`ollama pull phi3:mini`).
-- Python 3.7+ (recommended).
+This project demonstrates a **Retrieval-Augmented Generation (RAG)** pipeline using local LLMs.
 
-## Installation
+---
 
-Install the required Python packages using pip:
+# 🚀 Features
+
+- 🌐 Real-time web search using DuckDuckGo  
+- 🧠 Local AI inference using Ollama  
+- 📄 Webpage scraping and text extraction  
+- ✂️ Intelligent text chunking  
+- 📊 Embedding generation  
+- 🔍 Semantic similarity search using cosine similarity  
+- 🤖 AI-generated summarized answers  
+- 💾 Temporary vector storage using Joblib  
+
+---
+
+# 🧠 System Architecture (RAG Pipeline)
+
+```
+User Query
+    │
+    ▼
+DuckDuckGo Search
+    │
+    ▼
+Fetch Top Web Pages
+    │
+    ▼
+Extract Text from HTML
+    │
+    ▼
+Chunk Text
+    │
+    ▼
+Generate Embeddings (bge-m3)
+    │
+    ▼
+Cosine Similarity Search
+    │
+    ▼
+Retrieve Relevant Context
+    │
+    ▼
+Generate Answer (phi3:mini)
+```
+
+---
+
+# 📦 Prerequisites
+
+Make sure the following tools are installed.
+
+## 1️⃣ Install Ollama
+
+Download and install Ollama:
+
+https://ollama.com
+
+Start Ollama locally before running the script.
+
+---
+
+## 2️⃣ Pull Required Models
+
+```bash
+ollama pull phi3:mini
+ollama pull bge-m3:latest
+```
+
+| Model | Purpose |
+|------|------|
+| phi3:mini | Chat model |
+| bge-m3 | Embedding model |
+
+---
+
+## 3️⃣ Python Version
+
+Python **3.7+** is recommended.
+
+Check version:
+
+```bash
+python --version
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/web-search-ai.git
+cd web-search-ai
+```
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+Example `requirements.txt`
 
-1. Run the script:
+```
+numpy
+requests
+beautifulsoup4
+duckduckgo-search
+joblib
+ollama
+```
+
+---
+
+# ▶️ Usage
+
+Run the script:
+
 ```bash
 python ai_base_web_search.py
 ```
 
-2. Enter your query when prompted:
-```text
-Enter your quary : [your search query]
+Enter your query when prompted:
+
+```
+Enter your query: What is Retrieval Augmented Generation? 
 ```
 
-3. The script will fetch the top 5 web results from DuckDuckGo, process them, and provide a concise answer under 100 words using the local Ollama model.
+The system will:
 
-## Troubleshooting
+1. Search the web using DuckDuckGo  
+2. Extract text from top websites  
+3. Convert text into embeddings  
+4. Retrieve relevant information  
+5. Generate a short AI answer  
 
-If you encounter the "code is not working" message, please ensure that:
-- You have an active internet connection (required for the web search).
-- Ollama is running in the background.
-- The `phi3:mini` model has been successfully downloaded via Ollama.
+
+---
+
+# 📁 Project Structure
+
+```
+web-search-ai
+│
+├── ai_base_web_search.py
+├── requirements.txt
+├── README.md
+│
+├── rag_cache.joblib
+├── data.txt
+└── prompt.txt
+```
+
+| File | Description |
+|-----|-------------|
+| ai_base_web_search.py | Main RAG pipeline |
+| rag_cache.joblib | Cached embeddings |
+| data.txt | Extracted webpage text |
+| prompt.txt | Generated prompt for LLM |
+
+---
+
+# 💡 Code Use Case
+
+This project demonstrates how to build a **local AI web search assistant**.
+
+### 🔹 AI Search Engine
+Summarize search results automatically.
+
+### 🔹 RAG Learning Project
+Understand **Retrieval-Augmented Generation pipelines**.
+
+### 🔹 Local AI Applications
+Run AI models **without OpenAI API**.
+
+### 🔹 AI Developer Practice
+Learn:
+
+- embeddings
+- semantic search
+- cosine similarity
+- prompt engineering
+- local LLM pipelines
+
+---
+
+# ⚙️ Technologies Used
+
+| Technology | Purpose |
+|-----------|---------|
+| Python | Programming language |
+| DuckDuckGo Search | Web search |
+| BeautifulSoup | HTML parsing |
+| Ollama | Local LLM runtime |
+| NumPy | Vector similarity |
+| Joblib | Caching embeddings |
+
+---
+
+
+
+# ⚠️ Troubleshooting
+
+If the script does not work:
+
+### Check Internet Connection
+Web search requires internet.
+
+### Ensure Ollama is Running
+
+```bash
+ollama serve
+```
+
+### Verify Models Installed
+
+```bash
+ollama list
+```
+
+Expected output:
+
+```
+phi3:mini
+bge-m3:latest
+```
+
+### Reinstall Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 📚 Learning Outcomes
+
+By building this project you will learn:
+
+- Retrieval-Augmented Generation (RAG)
+- Web scraping pipelines
+- Embedding generation
+- Vector similarity search
+- Prompt engineering
+- Local LLM deployment
+
+---
+
+# 🔮 Future Improvements
+
+Possible improvements:
+
+- Add **FAISS vector database**
+- Add **Streamlit UI**
+- Improve **search ranking**
+- Add **source citations**
+- Support **multi-query search**
+
+---
+
