@@ -132,7 +132,7 @@ python ai_base_web_search.py
 Enter your query when prompted:
 
 ```
-Enter your query: What is Retrieval Augmented Generation?
+Enter your query: What is Retrieval Augmented Generation? 
 ```
 
 The system will:
@@ -142,6 +142,7 @@ The system will:
 3. Convert text into embeddings  
 4. Retrieve relevant information  
 5. Generate a short AI answer  
+
 
 ---
 
