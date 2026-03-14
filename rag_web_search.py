@@ -1,6 +1,6 @@
-#!/home/kali/Desktop/test/venv/bin/python
 
-import os
+
+import os 
 import joblib
 import numpy as np
 import requests
